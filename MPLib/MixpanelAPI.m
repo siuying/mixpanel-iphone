@@ -7,7 +7,7 @@
 #import <CommonCrypto/CommonHMAC.h>
 #import "MixpanelAPI.h"
 #import "MixpanelEvent.h"
-#import "CJSONDataSerializer.h"
+#import "CJSONSerializer.h"
 #import "NSData+Base64.h"
 
 #define SERVER_URL @"http://api.mixpanel.com/track/"
@@ -363,7 +363,7 @@ NSString* calculateHMAC_SHA1(NSString *str, NSString *key) {
 		self.eventsToSend = [NSArray arrayWithArray:self.eventQueue];
 	}
 	
-	CJSONDataSerializer *serializer = [CJSONDataSerializer serializer];
+	CJSONSerializer *serializer = [CJSONSerializer serializer];
 	NSData *data = [serializer serializeArray:[eventsToSend valueForKey:@"dictionaryValue"]
 										   error:nil];
 	[[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:YES];
